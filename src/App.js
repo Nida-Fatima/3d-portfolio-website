@@ -122,7 +122,7 @@ function App() {
     if (selectedTheme === "auto" && weather) {
       handleThemeChange("auto");
     }
-  }, [weather, selectedTheme]);
+  }, [weather, selectedTheme, handleThemeChange]);
 
   const handleThemeChange = (themeValue) => {
     setSelectedTheme(themeValue);
