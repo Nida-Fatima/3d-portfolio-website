@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import axios from "axios";
 import {
@@ -77,7 +77,7 @@ function App() {
     }
   };
 
-  const getLocation = () => {
+  const getLocation = useCallback(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -93,7 +93,7 @@ function App() {
       console.error("Geolocation is not supported by this browser.");
       // Fallback to a default location or handle the error appropriately
     }
-  };
+  });
 
   const [showNotification, setShowNotification] = useState(true);
 
@@ -105,25 +105,8 @@ function App() {
     if (themeSelectorRef.current) {
       themeSelectorRef.current.click();
       setShowNotification(false);
-
-      // themeSelectorRef.current.classList.add("pulse");
-
-      // setTimeout(() => {
-      //   themeSelectorRef.current.classList.remove("pulse");
-      // }, 2000); // Highlight lasts for 2 seconds
     }
   };
-
-  useEffect(() => {
-    getLocation();
-  }, []);
-
-  useEffect(() => {
-    if (selectedTheme === "auto" && weather) {
-      handleThemeChange("auto");
-    }
-  }, [weather, selectedTheme, handleThemeChange]);
-
   const handleThemeChange = (themeValue) => {
     setSelectedTheme(themeValue);
 
@@ -190,6 +173,16 @@ function App() {
         setCanvas(<StartCanvas />);
     }
   };
+
+  useEffect(() => {
+    getLocation();
+  }, [getLocation]);
+
+  useEffect(() => {
+    if (selectedTheme === "auto" && weather) {
+      handleThemeChange("auto");
+    }
+  }, [weather, selectedTheme]);
 
   return (
     <ThemeProvider theme={theme}>
