@@ -179,13 +179,13 @@ function App() {
 
   useEffect(() => {
     getLocation();
-  }, [getLocation]);
+  }, []);
 
   useEffect(() => {
     if (selectedTheme === "auto" && weather) {
       handleThemeChange("auto");
     }
-  }, [weather, selectedTheme, handleThemeChange]);
+  }, [weather, selectedTheme]);
 
   return (
     <ThemeProvider theme={theme}>
