@@ -107,72 +107,75 @@ function App() {
       setShowNotification(false);
     }
   };
-  const handleThemeChange = (themeValue) => {
-    setSelectedTheme(themeValue);
+  const handleThemeChange = useCallback(
+    (themeValue) => {
+      setSelectedTheme(themeValue);
 
-    switch (themeValue) {
-      case "auto":
-        switch (weather?.weatherCode) {
-          case 0:
-          case 1:
-            // getLocation();
-            setTheme(summerElegantTheme);
-            setCanvas(<Sunny />);
-            break;
-          case 2:
-          case 45:
-            setTheme(springRefreshTheme);
-            setCanvas(<Leaves />);
-            break;
-          case 3:
-          case 51:
-          case 61:
-            setTheme(rainyDayTheme);
-            setCanvas(<Rain />);
-            break;
-          case 71:
-          case 81:
-            setTheme(winterElegantTheme);
-            setCanvas(<SnowFlakes />);
-            break;
-          case 95:
-            setTheme(stormyWeatherTheme);
-            setCanvas(<Rain />);
-            break;
-          default:
-            setTheme(darkTheme);
-            setCanvas(<StartCanvas />);
-        }
-        break;
-      case "sunny":
-        setTheme(summerElegantTheme);
-        setCanvas(<Sunny />);
-        break;
-      case "snowy":
-        setTheme(winterElegantTheme);
-        setCanvas(<SnowFlakes />);
-        break;
-      case "rainy":
-        setTheme(rainyDayTheme);
-        setCanvas(<Rain />);
-        break;
-      case "windy":
-        setTheme(springRefreshTheme);
-        setCanvas(<Leaves />);
-        break;
-      case "stormy":
-        setTheme(stormyWeatherTheme);
-        setCanvas(<Rain />);
-        break;
-      case "default":
-        setTheme(darkTheme);
-        setCanvas(<StartCanvas />);
-        break;
-      default:
-        setTheme(darkTheme);
-        setCanvas(<StartCanvas />);
-    }
-  };
+      switch (themeValue) {
+        case "auto":
+          switch (weather?.weatherCode) {
+            case 0:
+            case 1:
+              // getLocation();
+              setTheme(summerElegantTheme);
+              setCanvas(<Sunny />);
+              break;
+            case 2:
+            case 45:
+              setTheme(springRefreshTheme);
+              setCanvas(<Leaves />);
+              break;
+            case 3:
+            case 51:
+            case 61:
+              setTheme(rainyDayTheme);
+              setCanvas(<Rain />);
+              break;
+            case 71:
+            case 81:
+              setTheme(winterElegantTheme);
+              setCanvas(<SnowFlakes />);
+              break;
+            case 95:
+              setTheme(stormyWeatherTheme);
+              setCanvas(<Rain />);
+              break;
+            default:
+              setTheme(darkTheme);
+              setCanvas(<StartCanvas />);
+          }
+          break;
+        case "sunny":
+          setTheme(summerElegantTheme);
+          setCanvas(<Sunny />);
+          break;
+        case "snowy":
+          setTheme(winterElegantTheme);
+          setCanvas(<SnowFlakes />);
+          break;
+        case "rainy":
+          setTheme(rainyDayTheme);
+          setCanvas(<Rain />);
+          break;
+        case "windy":
+          setTheme(springRefreshTheme);
+          setCanvas(<Leaves />);
+          break;
+        case "stormy":
+          setTheme(stormyWeatherTheme);
+          setCanvas(<Rain />);
+          break;
+        case "default":
+          setTheme(darkTheme);
+          setCanvas(<StartCanvas />);
+          break;
+        default:
+          setTheme(darkTheme);
+          setCanvas(<StartCanvas />);
+      }
+    },
+    [weather, selectedTheme]
+  );
 
   useEffect(() => {
     getLocation();
@@ -182,7 +185,7 @@ function App() {
     if (selectedTheme === "auto" && weather) {
       handleThemeChange("auto");
     }
-  }, [weather, selectedTheme]);
+  }, [weather, selectedTheme, handleThemeChange]);
 
   return (
     <ThemeProvider theme={theme}>
