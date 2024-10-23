@@ -8,6 +8,7 @@ import {
   rainyDayTheme,
   springRefreshTheme,
   stormyWeatherTheme,
+  foggyWeatherTheme,
 } from "./utils/Themes";
 import Navbar from "./components/Navbar";
 import ThemeSelector from "./components/cards/ThemeSelector"; // Import the new component
@@ -121,9 +122,12 @@ function App() {
               setCanvas(<Sunny />);
               break;
             case 2:
-            case 45:
               setTheme(springRefreshTheme);
               setCanvas(<Leaves />);
+              break;
+            case 45:
+              setTheme(foggyWeatherTheme);
+              setCanvas(<SnowFlakes />);
               break;
             case 3:
             case 51:

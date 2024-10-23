@@ -71,6 +71,20 @@ export const rainyDayTheme = {
   white: "#FFFFFF", // Pure white for high contrast
   black: "#2F4F4F", // Dark slate gray for a refined black alternative
 };
+export const foggyWeatherTheme = {
+  bg: "#E0E4E6", // A light, cool gray to mimic the soft, hazy backdrop of fog
+  bgLight: "#D6DBDF", // A slightly darker gray to provide subtle depth
+  primary: "#8BA1A9", // A muted, cool blue-gray that reflects the chill of a foggy atmosphere
+  primaryLight: "#B0C4C9", // A softer, lighter version of the primary color for gentle accents
+  primaryRGB: "139, 161, 169", // RGB equivalent of the muted blue-gray color
+  text_primary: "#4A565C", // A deeper cool gray for readability against the lighter backgrounds
+  text_secondary: "#7A868C", // A soft, muted gray-blue for secondary text
+  card: "#F5F7F8", // A very light, misty gray for card backgrounds to keep the foggy feel
+  card_light: "#D6DBDF", // A slightly darker gray for card accents to blend with the theme
+  button: "#8BA1A9", // Matching muted blue-gray for cohesive buttons
+  white: "#F5F7F8", // A very light gray-white to stay soft against the theme
+  black: "#2F3B41", // A dark, cool gray instead of pure black for a more natural, subdued contrast
+};
 
 export const stormyWeatherTheme = {
   bg: "#2C3E50", // Dark navy blue for a stormy sky background
